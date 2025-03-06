@@ -78,6 +78,7 @@ bool Empty(SqList& L) {
 bool DestroyList(SqList& L) {
     if (L.data != NULL) {
         free(L.data);
+        L.data = NULL;
         L.length = 0;
         L.max_size = 0;
         return true;

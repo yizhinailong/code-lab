@@ -72,8 +72,9 @@ TEST(LinearListTest, Deletion) {
     for (int i = 1; i < 10; i++) {
         ElemType e;
         EXPECT_TRUE(ListDelete(L, i, e));
-        EXPECT_EQ(e, i);
+        EXPECT_EQ(e, 2 * i - 1);
         PrintListInfo(L);
+        printf("删除的元素为 e = %d\n", e);
     }
     EXPECT_EQ(Length(L), 21);
 }
