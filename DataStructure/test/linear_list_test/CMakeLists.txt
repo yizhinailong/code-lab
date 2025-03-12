@@ -1,5 +1,9 @@
 project(linear_list_test)
 
-add_executable(${PROJECT_NAME} linear_list_sequential_test.cpp)
-target_include_directories(${PROJECT_NAME} PUBLIC ${linear_list_dir})
-target_link_libraries(${PROJECT_NAME} PUBLIC linear_list)
+add_executable(linear_list_sequential_test linear_list_sequential_test.cpp)
+target_include_directories(linear_list_sequential_test PUBLIC ${linear_list_dir})
+target_link_libraries(linear_list_sequential_test PUBLIC linear_list)
+
+add_executable(linear_list_single_linked_test linear_list_single_linked_test.cpp)
+target_include_directories(linear_list_single_linked_test PUBLIC ${linear_list_dir})
+target_link_libraries(linear_list_single_linked_test PUBLIC linear_list)
