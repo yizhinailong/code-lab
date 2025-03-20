@@ -5,9 +5,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 add_subdirectory(singleton_pattern)
 
-# 判断是否为Linux系统
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    # 判断编译器是否为GCC或Clang
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         message(STATUS "Using GCC, enabling ASan")
         add_compile_options(
@@ -35,3 +33,10 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 else()
     message(STATUS "ASan is only supported on Linux")
 endif()
+
+find_program(CCACHE_FOUND ccache)
+
+if(CCACHE_FOUND)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+endif(CCACHE_FOUND)
