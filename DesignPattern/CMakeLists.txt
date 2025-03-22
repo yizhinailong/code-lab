@@ -27,11 +27,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
         add_link_options(
             -fsanitize=address
         )
-    else()
-        message(STATUS "Compiler not supported for ASan")
     endif()
-else()
-    message(STATUS "ASan is only supported on Linux")
 endif()
 
 find_program(CCACHE_FOUND ccache)
