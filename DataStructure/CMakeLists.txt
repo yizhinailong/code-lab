@@ -12,31 +12,25 @@ if(CCACHE_FOUND)
 endif(CCACHE_FOUND)
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+    add_compile_options(
+        -fsanitize=address
+        -fno-omit-frame-pointer
+        -fsanitize-recover=address
+    )
+
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         message(STATUS "Using GCC, enabling ASan")
-        add_compile_options(
-            -fsanitize=address
-            -fno-omit-frame-pointer
-            -fsanitize-recover=address
-        )
         add_link_options(
             -fsanitize=address
             -static-libasan
         )
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         message(STATUS "Using Clang, enabling ASan")
-        add_compile_options(
-            -fsanitize=address
-            -fno-omit-frame-pointer
-            -fsanitize-recover=address
-        )
         add_link_options(
             -fsanitize=address
         )
     endif()
 endif()
-
-enable_testing()
 
 add_subdirectory(src)
 add_subdirectory(test)

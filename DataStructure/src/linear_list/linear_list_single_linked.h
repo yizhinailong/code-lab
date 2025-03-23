@@ -15,72 +15,102 @@ typedef struct LNode {
 } LNode, *LinkList;
 
 /**
- * @brief 初始化单链表。构建一个空链表结构。
+ * @brief 初始化带头结点的单链表
  *
- * 该函数用于初始化单链表，创建头节点并设置初始状态。
- * 初始化成功后，链表将包含一个数据域无效的头节点（head node），
- * 其next指针指向 NULL ，表示空链表状态。
+ * 创建一个包含头结点的空链表。头结点的数据域无效，其 `next` 指针初始化为 `NULL`。
  *
- * @param L 要初始化的链表头指针（LinkList类型），
- *          成功时L指向新创建的头节点，
- *          失败时L将被置为 NULL
- * @return true  成功分配头节点内存，完成初始化
- * @return false 内存分配失败，头节点创建未完成
+ * @param L 需要初始化的链表头指针的指针（初始化后指向头结点）
+ * @return true 初始化成功（头结点成功分配）
+ * @return false 内存分配失败，`L` 将被置为 `NULL`
  */
-bool InitList(LinkList L);
+bool InitListWithHead(LinkList* L);
 
 /**
- * @brief 使用头插法向单链表插入新元素
+ * @brief 初始化无头结点的空单链表
  *
- * 在链表的最前端插入新节点，新节点将成为链表的首元节点。
- * 时间复杂度为O(1)，适用于需要频繁在链表头部操作的场景。
+ * 将链表头指针初始化为空（`NULL`），表示链表中没有节点。
+ * 该函数直接设置头指针为 `NULL`，无需内存分配。
  *
- * @param L 链表头指针，操作成功后指向新插入的节点
- * @param e 待插入的元素值，类型与ElemType定义一致
- * @return LinkList 成功返回新节点指针，失败返回NULL
+ * @param L 需要初始化的链表头指针的指针
+ * @return true 总是返回 `true`，因为初始化无头结点的链表不会失败
  */
-LinkList ListHeadInsert(LinkList L, ElemType e);
+bool InitListNoHead(LinkList* L);
 
 /**
- * @brief 使用尾插法向单链表插入新元素
+ * @brief 在带头结点的单链表头部插入新节点
  *
- * 在链表的末尾插入新节点，新节点将成为链表的最后一个节点。
- * 时间复杂度为O(n)，其中n是链表的长度，因为需要遍历链表找到尾节点。
- * 适用于需要频繁在链表尾部操作的场景。
+ * 新节点插入到头结点之后，成为链表的第一个有效数据节点。
+ * 时间复杂度为 O(1)。
  *
- * @param L 链表头指针，指向链表的头节点
- * @param e 待插入的元素值，类型与ElemType定义一致
- * @return LinkList 成功返回新插入节点的指针，失败返回NULL
+ * @param L 链表的头指针（指向头结点，必须已初始化）
+ * @param e 待插入的元素值
+ * @return LinkList
+ *   - 成功时返回头结点指针（`L` 不变）
+ *   - 内存分配失败时返回 `NULL`
  */
-LinkList ListTailInsert(LinkList L, ElemType e);
+LinkList ListHeadInsertWithHead(LinkList L, ElemType e);
 
 /**
- * @brief 检查单链表是否为空
+ * @brief 在无头结点的单链表头部插入新节点
  *
- * 该函数用于判断给定的单链表是否为空。
- * 空链表的定义是头节点的next指针指向NULL。
+ * 新节点将成为链表的新头节点。时间复杂度为 O(1)。
  *
- * @param L 链表头指针，指向链表的头节点
- * @return true  链表为空
- * @return false 链表不为空
+ * @param L 当前链表的头指针（原头节点）
+ * @param e 待插入的元素值
+ * @return LinkList
+ *   - 成功时返回新头节点指针（调用者需更新头指针）
+ *   - 内存分配失败时返回 `NULL`
  */
-bool ListIsEmpty(LinkList L);
+LinkList ListHeadInsertNoHead(LinkList L, ElemType e);
 
-// bool ListDeleteElem(LinkList L, ElemType e); // 删除指定元素
+/**
+ * @brief 在带头结点的单链表尾部插入新节点
+ *
+ * 新节点插入到头结点之后的最后一个数据节点之后。时间复杂度为 O(n)。
+ *
+ * @param L 链表的头指针（指向头结点，必须已初始化）
+ * @param e 待插入的元素值
+ * @return LinkList
+ *   - 成功时返回头结点指针（`L` 不变）
+ *   - 内存分配失败时返回 `NULL`
+ */
+LinkList ListTailInsertWithHead(LinkList L, ElemType e);
+
+/**
+ * @brief 在无头结点的单链表尾部插入新节点
+ *
+ * 新节点将成为链表的最后一个节点。时间复杂度为 O(n)。
+ *
+ * @param L 当前链表的头指针（原头节点，可为 NULL 表示空链表）
+ * @param e 待插入的元素值
+ * @return LinkList
+ *   - 成功时返回新头节点指针（链表为空时返回新节点指针）
+ *   - 内存分配失败时返回 `NULL`
+ */
+LinkList ListTailInsertNoHead(LinkList L, ElemType e);
+
+/**
+ * @brief 销毁单链表并释放所有节点内存
+ *
+ * 该函数遍历链表并释放所有节点的内存，包括头节点（若有），同时将头指针置空以避免悬空指针。
+ *
+ * @param L 需要销毁的链表头指针的指针（指向头节点的指针）
+ */
+void ListDestroy(LinkList* L);
+
+// bool ListIsEmptyWithHead(LinkList L);
+// bool ListIsEmptyNoHead(LinkList L);
+
+// bool ListDeleteElem(LinkList L, ElemType e);
+
 // bool ListLocateElem(LinkList L, ElemType& e); // 元素查找定位
-// int ListGetLength(LinkList L);                // 获取链表长度
-// void ListReverse(LinkList L);                // 链表逆置
-// void ListDestroy(LinkList L);                // 销毁链表
-// bool ListMerge(LinkList La, LinkList Lb);   // 合并有序链表
-// bool ListHasCycle(LinkList L);                // 检测环存在性
-// LNode* ListGetMidNode(LinkList L);            // 获取中间节点
 
-/**
- * @brief 打印单链表中的所有元素
- *
- * 该函数用于遍历并打印单链表中的所有元素。
- * 打印时跳过头节点，从首元节点开始打印。
- *
- * @param L 链表头指针，指向链表的头节点
- */
-void PrintList(LinkList L);
+// int ListGetLength(LinkList L);                // 获取链表长度
+
+// void ListReverse(LinkList L);                // 链表逆置
+
+// bool ListMerge(LinkList La, LinkList Lb);   // 合并有序链表
+
+// bool ListHasCycle(LinkList L);                // 检测环存在性
+
+// LNode* ListGetMidNode(LinkList L);            // 获取中间节点

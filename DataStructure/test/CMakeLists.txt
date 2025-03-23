@@ -1,4 +1,6 @@
 project(test_main)
 
-add_subdirectory(linear_list_test)
-add_subdirectory(gtest)
+enable_testing()
+find_package(GTest CONFIG REQUIRED)
+
+add_subdirectory(linear_list_gtest)
