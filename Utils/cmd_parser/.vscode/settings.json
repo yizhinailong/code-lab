@@ -1,0 +1,12 @@
+{
+    "cmake.debugConfig": {
+        "args": [
+            "-t",
+            "http",
+            "-h",
+            "localhost",
+            "-p",
+            "8080",
+        ]
+    }
+}
