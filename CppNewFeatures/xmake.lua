@@ -11,4 +11,7 @@ function create_targets_for_cpp_files(directory, cpp_standard)
 end
 
 create_targets_for_cpp_files("Cpp11", "c++11")
--- create_targets_for_cpp_files("cpp_labs", "c++14")
+create_targets_for_cpp_files("Cpp14", "c++14")
+create_targets_for_cpp_files("Cpp17", "c++17")
+create_targets_for_cpp_files("Cpp20", "c++20")
+create_targets_for_cpp_files("Cpp23", "c++23")
