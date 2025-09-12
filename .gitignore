@@ -8,6 +8,10 @@
 **/.xmake/
 [Bb]uild/
 
+##### Obsidion
+**/.obsidion
+**/.obsidion/
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
