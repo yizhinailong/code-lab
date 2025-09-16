@@ -6,7 +6,15 @@ macro(create_spdlog_app NAME)
     target_link_libraries(${NAME} PRIVATE spdlog::spdlog)
 endmacro()
 
-find_package(spdlog CONFIG REQUIRED)
+# find_package(spdlog CONFIG REQUIRED)
+
+include(FetchContent)
+FetchContent_Declare(
+    spdlog
+    GIT_REPOSITORY https://github.com/gabime/spdlog.git
+    GIT_TAG v1.15.3
+)
+FetchContent_MakeAvailable(spdlog)
 
 create_spdlog_app(demo_1_simple_log)
 create_spdlog_app(demo_2_file_log)
