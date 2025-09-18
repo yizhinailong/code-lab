@@ -13,6 +13,7 @@ int main() {
     animales.insert({ "dog", 1 });
     animales.insert({ "shark", 0 });
     animales.insert({ "spider", 0 });
+    animales.insert({ "cat", 1 });
 
     std::cout << animales.left.count("cat") << std::endl;
 
