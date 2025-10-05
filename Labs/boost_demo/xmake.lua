@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
-add_requires("boost", {configs = {cmake = false}})
+add_requires("boost")
 
 includes("boost_*")
 
