@@ -1298,9 +1298,9 @@ IncludeCategories:
   - Regex: '^"(myproject/.+\.h)"'
     Priority: 0
 
-  # 1. C系统头文件 (.h> 结尾)
-  - Regex: '^<.*\.h>$'
-    Priority: 1
+  # # 1. C系统头文件 (.h> 结尾)
+  # - Regex: '^<.*\.h>$'
+  #   Priority: 1
 
   # 2. C++系统头文件 (无扩展名，以 > 结尾)
   - Regex: "^<[^./]+>$"
