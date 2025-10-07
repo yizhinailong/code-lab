@@ -1,6 +1,11 @@
-target("boost_bimap", function ()
-    set_kind("binary")
-    add_files("boost_bimap.cpp")
-    add_packages("boost")
-    set_languages("c++23")
-end)
+target(
+    "boost_bimap",
+    function()
+        set_kind("binary")
+        set_languages("c++23")
+
+        add_files("boost_bimap.cpp")
+
+        add_packages("boost")
+    end
+)

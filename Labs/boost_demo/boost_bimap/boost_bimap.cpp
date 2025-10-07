@@ -1,7 +1,8 @@
-#include <iostream>
 #include <string_view>
 
 #include <boost/bimap.hpp>
+
+#include "dbg.hpp"
 
 using bimap = boost::bimap<std::string_view, int>;
 
@@ -15,9 +16,8 @@ int main() {
     animales.insert({ "spider", 0 });
     animales.insert({ "cat", 1 });
 
-    std::cout << animales.left.count("cat") << std::endl;
-
-    std::cout << animales.right.count(0) << std::endl;
+    dbg(animales.left.count("cat"));
+    dbg(animales.right.count(0));
 
     return 0;
 }
