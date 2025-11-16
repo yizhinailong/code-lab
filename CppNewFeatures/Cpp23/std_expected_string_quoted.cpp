@@ -12,7 +12,7 @@ enum class parse_error : std::int8_t {
 
 static auto parse_number(std::string_view& str) -> std::expected<double, parse_error> {
     const char* begin = str.data();
-    char* end;
+    char* end = nullptr;
     double retval = std::strtod(begin, &end);
 
     if (begin == end) {
